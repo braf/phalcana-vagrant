@@ -1,12 +1,11 @@
-exec { 'apt-get update':
-  path => '/usr/bin',
-}
 
-package { 'vim':
-  ensure => present,
-}
-
-package { 'git':
+package { [
+    'vim',
+    'git',
+    'python-software-properties',
+    'man',
+    'ntp,'
+    ]:
   ensure => present,
 }
 
@@ -14,9 +13,13 @@ file { '/web/':
   ensure => 'directory',
 }
 
+file { '/web/etc/':
+  ensure => 'directory',
+}
+
 file { '/web/www/':
   ensure => 'directory',
 }
 
-include nginx, php, mysql
+include nginx, php, mysql, apt, stdlib
 
