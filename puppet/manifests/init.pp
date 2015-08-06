@@ -4,7 +4,7 @@ package { [
     'git',
     'python-software-properties',
     'man',
-    'ntp,'
+    'ntp',
     ]:
   ensure => present,
 }
@@ -21,5 +21,10 @@ file { '/web/www/':
   ensure => 'directory',
 }
 
-include nginx, php, mysql, apt, stdlib
+class { 'timezone':
+    timezone => 'Europe/London',
+}
 
+
+
+include nginx, php, mysql, apt, stdlib

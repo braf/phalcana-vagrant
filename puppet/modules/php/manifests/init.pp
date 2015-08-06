@@ -100,7 +100,7 @@ class php {
     mode    => 644,
     owner  => root,
     group  => root,
-    require => package['php5-phalcon'],
+    require => Package['php5-phalcon'],
     notify  => Service["php5-fpm"],
   }
 
