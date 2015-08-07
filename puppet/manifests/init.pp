@@ -26,5 +26,6 @@ class { 'timezone':
 }
 
 
+include nginx, mysql, apt, stdlib, ::php
 
-include nginx, php, mysql, apt, stdlib
+Apt::Ppa <| |> -> Class['apt::update'] -> ::Php::Extension <| |>

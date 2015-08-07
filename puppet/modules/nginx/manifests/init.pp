@@ -65,10 +65,4 @@ class nginx {
   }
 
 
-  # Disable the default nginx vhost
-  file { 'default-nginx-disable':
-    path => '/etc/nginx/sites-enabled/default',
-    ensure => absent,
-    require => Package['nginx'],
-  }
 }
