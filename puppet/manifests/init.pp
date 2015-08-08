@@ -3,7 +3,6 @@ package { [
     'vim',
     'git',
     'python-software-properties',
-    'man',
     'ntp',
     ]:
   ensure => present,
