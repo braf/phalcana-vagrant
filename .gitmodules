@@ -4,9 +4,6 @@
 [submodule "puppet/modules/stdlib"]
 	path = puppet/modules/stdlib
 	url = https://github.com/puppetlabs/puppetlabs-stdlib
-[submodule "puppet/modules/timezone"]
-	path = puppet/modules/timezone
-	url = https://github.com/saz/puppet-timezone.git
 [submodule "puppet/modules/php"]
 	path = puppet/modules/php
 	url = https://github.com/mayflower/puppet-php.git
