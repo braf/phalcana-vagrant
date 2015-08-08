@@ -26,7 +26,7 @@ Vagrant.configure(2) do |config|
 
 
     config.vm.provision "shell",
-         path: "puppet-bootstrap/ubuntu.sh"
+         path: "scripts/puppet"
 
 
     config.vm.provision :puppet do |puppet|
@@ -37,5 +37,5 @@ Vagrant.configure(2) do |config|
     end
 
     config.vm.provision "shell", run: "always",
-        inline: "service nginx restart && service php5-fpm restart"
+        path: "scripts/restart"
 end

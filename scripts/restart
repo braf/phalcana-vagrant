@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# Restarts servies
+#
+
+service nginx restart
+service php5-fpm restart
