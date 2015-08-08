@@ -20,6 +20,9 @@ file { '/web/www/':
   ensure => 'directory',
 }
 
+class { 'timezone':
+    timezone => 'Europe/London',
+}
 
 
 include nginx, mysql, apt, stdlib, ::php
