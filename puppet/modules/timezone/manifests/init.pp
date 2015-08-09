@@ -2,22 +2,23 @@ class timezone (
   $timezone = 'UTC',
 ) {
 
-  file { '/etc/timezone':
-    ensure  => 'present',
-    content => "{$timezone}",
-    before => File['/etc/localtime'],
-    show_diff => true,
+  exec { 'check_timezone':
+    command     => "echo '${timezone}' > /etc/timezone",
+    path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+    unless      => "grep '${timezone}' /etc/timezone",
   }
 
-  file { '/etc/localtime':
-    ensure => 'link',
-    target => "/usr/share/zoneinfo/${timezone}",
+  exec { '/etc/localtime':
+    command => "cp /usr/share/zoneinfo/${timezone} /etc/localtime",
+    path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+    subscribe   => Exec['check_timezone'],
+    refreshonly => true,
   }
 
   exec { 'update_timezone':
-    command     => 'dpkg-reconfigure --no-reload -f  noninteractive tzdata',
+    command     => 'dpkg-reconfigure -f  noninteractive tzdata',
     path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-    subscribe   => File['/etc/timezone'],
+    subscribe   => Exec['/etc/localtime'],
     refreshonly => true,
   }
 }
