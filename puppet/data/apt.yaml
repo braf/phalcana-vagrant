@@ -1,3 +1,0 @@
----
-  apt::ppas:
-    'ppa:phalcon/stable': {}

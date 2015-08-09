@@ -1,0 +1,3 @@
+---
+mysql::server::root_password: strongpassword
+mysql::server::remove_default_accounts: true

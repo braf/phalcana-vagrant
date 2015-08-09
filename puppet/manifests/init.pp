@@ -1,25 +1,14 @@
-
-package { [
-    'vim',
-    'git',
-    'python-software-properties',
-    'ntp',
-    ]:
+$packages = hiera_array('packages')
+package { $packages:
   ensure => present,
 }
 
-file { '/web/':
+$directories = hiera_array('directories')
+file { $directories:
   ensure => 'directory',
 }
 
-file { '/web/etc/':
-  ensure => 'directory',
-}
+hiera_include('classes')
 
-file { '/web/www/':
-  ensure => 'directory',
-}
-
-include nginx, mysql, apt, stdlib, ::php, timezone
 
 Apt::Ppa <| |> -> Class['apt::update'] -> ::Php::Extension <| |>

@@ -1,8 +1,9 @@
 ---
-:backends: yaml
+:backends:
+  - yaml
 :yaml:
   :datadir: "/etc/puppet/data"
 :hierarchy:
-  - timezone
-  - apt
-  - php
+  - "environment/%{::environment}"
+  - common
+  - local
