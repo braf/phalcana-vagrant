@@ -3,5 +3,6 @@
 :yaml:
   :datadir: "/etc/puppet/data"
 :hierarchy:
+  - timezone
   - apt
   - php

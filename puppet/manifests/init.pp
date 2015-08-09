@@ -20,11 +20,6 @@ file { '/web/www/':
   ensure => 'directory',
 }
 
-class { 'timezone':
-    timezone => 'Europe/London',
-}
-
-
-include nginx, mysql, apt, stdlib, ::php
+include nginx, mysql, apt, stdlib, ::php, timezone
 
 Apt::Ppa <| |> -> Class['apt::update'] -> ::Php::Extension <| |>
