@@ -1,5 +1,7 @@
 # vagrant/puppet/modules/mysql/manifests/init.pp
-class mysql {
+class mysql (
+  $password = 'root',
+) {
 
   # Install mysql
   package { ['mysql-server']:
@@ -22,8 +24,8 @@ class mysql {
   }
 
   exec { 'set-mysql-password':
-    unless  => 'mysqladmin -uroot -proot password root',
-    command => 'mysqladmin -uroot password root',
+    unless  => 'mysqladmin -uroot -proot password ${password}',
+    command => 'mysqladmin -uroot password ${password}',
     path    => ['/bin', '/usr/bin'],
     require => Service['mysql'];
   }
