@@ -25,18 +25,6 @@ class nginx {
     require => Package['nginx'],
   }
 
-  # Install nginx config
-  # file { 'vagrant-nginx':
-  #   path => '/etc/nginx/nginx.conf',
-  #   ensure => file,
-  #   require => Package['nginx'],
-  #   source => 'puppet:///modules/nginx/nginx.conf',
-  #   mode    => 644,
-  #   owner  => root,
-  #   group  => root,
-  #   notify  => Service["nginx"],
-  # }
-
   file_line { 'vagrant-nginx':
     ensure => present,
     path => '/etc/nginx/nginx.conf',
