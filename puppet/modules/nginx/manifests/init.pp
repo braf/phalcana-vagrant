@@ -7,17 +7,14 @@ class nginx {
   }
 
 
-  file { '/web/etc/nginx-sites/':
+  file { [
+    '/web/etc/nginx-sites/',
+    '/web/etc/nginx.d/',
+    '/web/etc/logs/'
+    ]:
     ensure => 'directory',
   }
 
-  file { '/web/etc/nginx.d/':
-    ensure => 'directory',
-  }
-
-  file { '/web/etc/logs/':
-    ensure => 'directory',
-  }
 
   # Make sure that the nginx service is running
   service { 'nginx':
