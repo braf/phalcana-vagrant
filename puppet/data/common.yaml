@@ -54,3 +54,4 @@ php::extensions:
     gd: {}
     curl: {}
     phalcon: {}
+    mysql: {}
