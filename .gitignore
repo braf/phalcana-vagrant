@@ -1,4 +1,5 @@
 .vagrant/
 puppet/ssl
+puppet/data/local.yaml
 Vagrantfile
 Thumbs.db
