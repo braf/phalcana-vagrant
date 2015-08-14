@@ -1,5 +1,6 @@
 class phpci (
     $url = 'http://phpci.local',
+    $domain = 'phpci.local',
     $db_host = 'localhost',
     $db_name = 'phpci',
     $db_user = 'phpci',
@@ -41,6 +42,11 @@ class phpci (
         user => 'vagrant',
         subscribe   => Exec['phpci-composer'],
         refreshonly => true,
+    }
+
+    file { "/etc/nginx/sites-enabled/${domain}.conf":
+        content => template('phpci/vhost.erb'),
+        ensure => present,
     }
 
     mysql::db { $db_name:
