@@ -13,3 +13,9 @@
 [submodule "puppet/modules/ssh"]
 	path = puppet/modules/ssh
 	url = https://github.com/blt/puppet-ssh.git
+[submodule "puppet/modules/nodejs"]
+	path = puppet/modules/nodejs
+	url = https://github.com/puppet-community/puppet-nodejs.git
+[submodule "puppet-bootstrap"]
+	path = puppet-bootstrap
+	url = https://github.com/braf/puppet-bootstrap.git
