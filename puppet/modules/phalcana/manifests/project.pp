@@ -3,6 +3,7 @@ define phalcana::project (
   $domain,
   $ensure = 'present',
   $composer_home = '/home/vagrant',
+  $databases = {},
 ) {
     $install_path = "${::phalcana::path}${name}"
 
@@ -40,5 +41,10 @@ define phalcana::project (
         subscribe   => Exec["${name}-clone"],
         refreshonly => true
     }
+
+    create_resources('mysql::db', $databases, {
+        ensure => $ensure,
+        host   => 'localhost',
+    })
 
 }
