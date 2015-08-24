@@ -7,17 +7,24 @@ server {
     access_log /var/log/nginx/<%= @domain %>.access.log;
     error_log /var/log/nginx/<%= @domain %>.error.log;
 
-    location / {
-        try_files $uri @phpci;
+    index index.php index.html index.htm;
+
+    try_files $uri $uri/ @rewrite;
+
+    location @rewrite {
+        rewrite ^(.*)$ /index.php?_url=$1;
     }
 
-    location @phpci {
-        # Pass to FastCGI:
-        fastcgi_pass    unix:/var/run/php5-fpm.sock;
-        fastcgi_index   index.php;
-        fastcgi_buffers 256 4k;
-        include         fastcgi_params;
-        fastcgi_param   SCRIPT_FILENAME $document_root/index.php;
-        fastcgi_param   SCRIPT_NAME index.php;
+    location ~ \.php {
+        # try_files    $uri =404;
+
+        fastcgi_index  /index.php;
+        fastcgi_pass   unix:/var/run/php5-fpm.sock;
+
+        include fastcgi_params;
+        fastcgi_split_path_info       ^(.+\.php)(/.+)$;
+        fastcgi_param PATH_INFO       $fastcgi_path_info;
+        fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 }
