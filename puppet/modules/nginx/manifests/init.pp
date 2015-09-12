@@ -27,7 +27,7 @@ class nginx (
   file_line { 'user-nginx':
     ensure => present,
     path => '/etc/nginx/nginx.conf',
-    line   => 'user ${user};',
+    line   => "user ${user};",
     match  => '^user (.+)$',
     require => Package['nginx'],
     notify  => Service["nginx"],
