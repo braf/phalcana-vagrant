@@ -1,4 +1,6 @@
-class nginx {
+class nginx (
+  $user = 'www-data'
+) {
 
   # Install the nginx package. This relies on apt-get update
   package { 'nginx':
@@ -22,10 +24,10 @@ class nginx {
     require => Package['nginx'],
   }
 
-  file_line { 'vagrant-nginx':
+  file_line { 'user-nginx':
     ensure => present,
     path => '/etc/nginx/nginx.conf',
-    line   => 'user vagrant;',
+    line   => 'user ${user};',
     match  => '^user (.+)$',
     require => Package['nginx'],
     notify  => Service["nginx"],

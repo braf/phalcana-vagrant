@@ -1,0 +1,10 @@
+nginx:user: vagrant
+php::fpm::config:
+    user: vagrant
+    group: vagrant
+php::fpm::pools:
+    www:
+        user: vagrant
+        group: vagrant
+        listen_owner: vagrant
+        listen_group: vagrant
